@@ -10,7 +10,10 @@ const app= express();
 
 app.use(express.json())
 
-// for client side
+// Setting up Stripe
+const stripe=require('stripe')(process.env.STRIPE_KEY)
+
+// for client
 app.use(express.static("public"))
 
 // Key Value pair of the items in the store
@@ -19,7 +22,8 @@ const storeItems = new Map([
     [2,{priceInPaise:20000,name:"Father of Binod"}],
 ])
 
-// Setting up Stripe
-const stripe=require('stripe')(process.env.STRIPE_KEY)
+app.post('/create-checkout-session',(req,res)=>{
+    res.json({url: 'hm'})
+})
 
 app.listen(3000)    
