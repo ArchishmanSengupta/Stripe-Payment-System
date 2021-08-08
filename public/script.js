@@ -22,14 +22,14 @@ button.addEventListener("click",()=>{
 
     // REDIRECT THE USER if this is a successful request
 
-    .then(res=>{
-        if(res.ok) return res.json()
-
-        return res.json().then(json=>Promise.reject(json))
-    }).then({url})=>{
-        // window.location=url
-        console.log(url)
-    }).catch(e=>{
+    .then(res => {
+        if (res.ok) return res.json()
+        return res.json().then(json => Promise.reject(json))
+      })
+      .then(({ url }) => {
+        window.location = url
+      })
+      .catch(e => {
         console.error(e.error)
-    })
-})
+      })
+  })
