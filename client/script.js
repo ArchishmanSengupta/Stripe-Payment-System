@@ -1,24 +1,21 @@
 const button = document.querySelector("button")
-button.addEventListener("click",()=>{
+button.addEventListener("click", () => {
 
     //  Make A request to the server
-    fetch("/create-checkout-session",{
-        method: "POST",
-        headers: {
-            'Content-Type': 'application/json'
-        },
+    fetch("http://localhost:3000/create-checkout-session", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
 
         // ID and QUANTITY of ITEMS i want to bu
         body: JSON.stringify({
-            items:[
-                {
-                    id:1,quantity:3
-                },
-                {
-                    id:2,quantity:1}
+            items: [
+              { id: 1, quantity: 3 },
+              { id: 2, quantity: 1 },
             ],
-        }),
-    })
+          }),
+        })
 
     // REDIRECT THE USER if this is a successful request
 
@@ -27,6 +24,7 @@ button.addEventListener("click",()=>{
         return res.json().then(json => Promise.reject(json))
       })
       .then(({ url }) => {
+        // console.log(url)
         window.location = url
       })
       .catch(e => {
